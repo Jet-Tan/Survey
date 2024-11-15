@@ -1,0 +1,105 @@
+/* Reset cơ bản */
+body, h1, h2, form, div, label, input {
+    box-sizing: border-box;
+}
+
+/* Toàn bộ trang */
+body {
+    font-family: 'Arial', sans-serif;
+    background: rgb(255 237 237);
+}
+
+/* Khung chứa chính */
+.container {
+    text-align: center;
+}
+
+/* Tiêu đề */
+.container h2 {
+    font-size: 1.5rem; /* 20px */
+    color: #1d4ed8;
+    margin-bottom: 1rem;
+}
+
+/* Thông tin mô tả */
+.info {
+    background: rgb(255 204 77);
+    padding: 0.75rem;
+    border-radius: 8px;
+    color: #4b5563;
+    font-size:1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+/* Biểu tượng */
+.info i {
+    color: rgb(0, 0, 0);
+    font-size: 3.75rem; /* 60px */
+}
+
+/* Nhóm phản hồi */
+.feedback-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: #fff;
+    padding: 0.75rem;
+}
+
+/* Nhóm từng lựa chọn */
+.feedback-group div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+}
+
+.feedback-group label {
+    font-size: 1.875rem; /* 30px */
+}
+
+/* Đảm bảo radio button không bị ẩn */
+.feedback-group input[type="radio"] {
+    display: inline-block;
+    width: 1.25rem; /* 20px */
+    height: 1.25rem; /* 20px */
+    margin-right: 0.625rem;
+    border-radius: 0 !important;
+    background-color: #f1f5f9;
+    border: 2px solid #ccc;
+}
+
+/* Thay đổi màu sắc khi chọn */
+.feedback-group input[type="radio"]:checked + label {
+    color: #1d4ed8;
+    font-weight: bold;
+}
+
+/* Khoảng cách giữa các nhóm */
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .container h2 {
+        font-size: 1.5rem; /* 18px */
+    }
+}
+
+/* Focus state for radio buttons */
+.feedback-group input[type="radio"]:focus {
+    outline: 2px solid #1d4ed8;
+    outline-offset: 2px;
+}
+
+/* Hover effect for labels */
+.feedback-group label:hover {
+    color: #1d4ed8;
+    cursor: pointer;
+}
