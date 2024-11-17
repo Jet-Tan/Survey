@@ -1,5 +1,5 @@
 /* Reset cơ bản */
-body, h1, h2, form, div, label, input {
+body, h1, h2, form, div, label, input, button, textarea, img {
     box-sizing: border-box;
 }
 
@@ -7,18 +7,23 @@ body, h1, h2, form, div, label, input {
 body {
     font-family: 'Arial', sans-serif;
     background: rgb(255 237 237);
+    margin: 0;
+    padding: 0;
 }
 
 /* Khung chứa chính */
 .container {
-    text-align: center;
+    padding: 2rem; /* More padding on larger screens */
+    max-width: 1200px;
+    margin: 0 auto; /* Center container on larger screens */
 }
 
 /* Tiêu đề */
 .container h2 {
-    font-size: 1.5rem; /* 20px */
+    font-size: 1.5rem; /* 24px on large screens, smaller on mobile */
     color: #1d4ed8;
     margin-bottom: 1rem;
+    text-align: center;
 }
 
 /* Thông tin mô tả */
@@ -27,7 +32,7 @@ body {
     padding: 0.75rem;
     border-radius: 8px;
     color: #4b5563;
-    font-size:1rem;
+    font-size: 1rem;
     margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
@@ -48,6 +53,7 @@ body {
     gap: 1rem;
     background: #fff;
     padding: 0.75rem;
+    margin-top: 10px;
 }
 
 /* Nhóm từng lựa chọn */
@@ -58,8 +64,10 @@ body {
     padding: 0.75rem;
 }
 
+/* Nhóm label */
 .feedback-group label {
     font-size: 1.875rem; /* 30px */
+    cursor: pointer;
 }
 
 /* Đảm bảo radio button không bị ẩn */
@@ -79,19 +87,6 @@ body {
     font-weight: bold;
 }
 
-/* Khoảng cách giữa các nhóm */
-
-/* Mobile responsive */
-@media (max-width: 480px) {
-    .container {
-        padding: 1rem;
-    }
-
-    .container h2 {
-        font-size: 1.5rem; /* 18px */
-    }
-}
-
 /* Focus state for radio buttons */
 .feedback-group input[type="radio"]:focus {
     outline: 2px solid #1d4ed8;
@@ -101,5 +96,85 @@ body {
 /* Hover effect for labels */
 .feedback-group label:hover {
     color: #1d4ed8;
-    cursor: pointer;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .container h2 {
+        font-size: 1.25rem; /* 20px */
+    }
+
+    .feedback-group {
+        padding: 0.5rem;
+    }
+
+    .feedback-group label {
+        font-size: 1.5rem; /* 24px */
+    }
+
+    .feedback-group input[type="radio"] {
+        width: 1.125rem; /* 18px */
+        height: 1.125rem; /* 18px */
+    }
+
+    button {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    textarea {
+        padding: 0.75rem;
+        width: 100%;
+    }
+}
+
+/* Button styling */
+button {
+    padding: 14px;
+    border-radius: 8px;
+    background: #1d4ed8;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+}
+
+/* Image styling */
+img {
+    height: 40px;
+}
+
+/* Textarea */
+textarea {
+    border-radius: 8px;
+    padding: 1rem; /* Adds some padding inside the container */
+    background-color: #fff; /* Adds a background color to distinguish the input area */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for visual depth */
+    margin: 10px 0;
+    width: 100%;
+}
+
+/* Checkboxes and tick image */
+.check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tick {
+    height: 20px;
+}
+
+/* Logo styling */
+.logo {
+    display: flex;
+    height: 150px;
+margin: 10px auto;
+}
+
+span{
+    font-size: 18px;
 }

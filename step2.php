@@ -1,10 +1,8 @@
 <?php
 session_start();
-// include 'db_connection.php';
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $_SESSION['step2_choice'] = $_POST['app_choice'];
-    header('Location: step3.php');
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $_SESSION['step2'] = $_POST['app_choice'];
+    header("Location: step3.php");
     exit();
 }
 ?>
@@ -19,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="style.css">
     <title>Bước 2: Chọn ứng dụng</title>
     <script>
-    function autoSubmit() {
-        document.getElementById('step2-form').submit();
-    }
+        function autoSubmit() {
+            document.getElementById('step2-form').submit();
+        }
     </script>
 </head>
 
@@ -30,6 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h2>Trải Nghiệm Mua Sắm Hoàn Tiền Tại Riokupon Của Bạn Thế Nào?</h2>
         <div class="info">
             <i class="fa-solid fa-cart-plus"></i> Bạn mua sắm qua App Riokupon hay Messenger Riokupon
+        </div>
+        <div class="check">
+            <img src="images/tick.png" alt="Tick Image" class="tick"> Ý kiến của bạn rất quan trọng với Riokupon
         </div>
         <form id="step2-form" method="POST">
             <div class="feedback-group">

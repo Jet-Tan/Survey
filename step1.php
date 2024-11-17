@@ -1,10 +1,8 @@
 <?php
 session_start();
-
-// Kiểm tra nếu form được submit
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['satisfaction'])) {
-    $_SESSION['step1_choice'] = $_POST['satisfaction']; // Lưu lựa chọn vào session
-    header('Location: step2.php'); // Chuyển hướng tới trang tiếp theo
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $_SESSION['step1'] = $_POST['satisfaction'];
+    header("Location: step2.php");
     exit();
 }
 ?>

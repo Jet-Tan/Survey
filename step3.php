@@ -1,27 +1,8 @@
 <?php
 session_start();
-// include 'db_connection.php'; 
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $_SESSION['step3_choice'] = $_POST['action_choice'];
-
-    // Lấy dữ liệu từ session
-    $step1 = $_SESSION['step1_choice'];
-    $step2 = $_SESSION['step2_choice'];
-    $step3 = $_POST['action_choice'];
-
-    // Lưu vào cơ sở dữ liệu
-    $sql = "INSERT INTO multi_step_survey (step1_choice, step2_choice, step3_choice)
-            VALUES ('$step1', '$step2', '$step3')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Cảm ơn bạn đã hoàn thành khảo sát!";
-    } else {
-        echo "Lỗi: " . $sql . "<br>" . $conn->error;
-    }
-
-    $conn->close();
-    session_destroy();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $_SESSION['step3'] = $_POST['action'];
+    header("Location: step4.php");
     exit();
 }
 ?>
@@ -36,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="style.css">
     <title>Bước 3: Hành động tiếp theo</title>
     <script>
-    function autoSubmit() {
-        document.getElementById('step3-form').submit();
-    }
+        function autoSubmit() {
+            document.getElementById('step3-form').submit();
+        }
     </script>
 </head>
 
@@ -48,33 +29,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="info">
             <i class="fa-solid fa-store"></i> Bạn thấy khó khăn ở bước nào khi mua sắm qua Riokupon
         </div>
+        <div class="check">
+            <img src="images/tick.png" alt="Tick Image" class="tick"> Ý kiến của bạn rất quan trọng với Riokupon
+        </div>
         <form id="step3-form" method="POST">
             <div class="feedback-group">
                 <div>
-                    <label>Tải
-                        app
-                        Riokupon</label>
-                    <input type="radio" name="action_choice" value="Tải app Riokupon" onchange="autoSubmit()">
+                    <label>Tải app Riokupon</label>
+                    <input type="radio" name="action" value="Tải app Riokupon" onchange="autoSubmit()">
                 </div>
                 <div>
                     <label>
                         Đăng nhập tài khoản Riokupon</label>
-                    <input type="radio" name="action_choice" value="Đăng nhập tài khoản Riokupon"
-                        onchange="autoSubmit()">
+                    <input type="radio" name="action" value="Đăng nhập tài khoản Riokupon" onchange="autoSubmit()">
                 </div>
                 <div>
                     <label> Copy link sản phẩm trên sàn</label>
-                    <input type="radio" name="action_choice" value="Tải app Riokupon" onchange="autoSubmit()">
+                    <input type="radio" name="action" value="Tải app Riokupon" onchange="autoSubmit()">
                 </div>
                 <div>
                     <label>
                         Dán link sản phẩm ở messenger/app Riokupon</label>
-                    <input type="radio" name="action_choice" value="Đăng nhập tài khoản Riokupon"
-                        onchange="autoSubmit()">
+                    <input type="radio" name="action" value="Đăng nhập tài khoản Riokupon" onchange="autoSubmit()">
                 </div>
                 <div>
                     <label> Không có gì khó khăn</label>
-                    <input type="radio" name="action_choice" value="Tải app Riokupon" onchange="autoSubmit()">
+                    <input type="radio" name="action" value="Tải app Riokupon" onchange="autoSubmit()">
                 </div>
 
             </div>
