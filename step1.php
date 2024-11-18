@@ -15,12 +15,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Bước 1: Đánh giá</title>
+    <title>Riokupon</title>
     <script>
-    // Hàm tự động gửi form khi chọn radio button
-    function autoSubmit() {
-        document.getElementById('step1-form').submit(); // Gửi form khi chọn radio
-    }
+        // Hàm tự động gửi form khi chọn radio button
+        function autoSubmit() {
+            document.getElementById('step1-form').submit(); // Gửi form khi chọn radio
+        }
     </script>
 </head>
 

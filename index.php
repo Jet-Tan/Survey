@@ -51,22 +51,23 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Thông tin cơ bản</title>
+    <title>Riokupon</title>
 </head>
 <style>
-    input {
-        border-radius: 8px;
-        padding: 10px
-    }
+input {
+    border-radius: 8px;
+    padding: 10px
+}
 
-    .feedback-group {
-        margin: 10px 20px;
-        background: transparent;
-    }
+.feedback-group {
+    margin: 10px 20px;
+    background: transparent;
+}
 </style>
 
 <body>
     <div class="container">
+        <h2>Khảo sát về Riokupon</h2>
         <form id="step-form" method="post">
             <div class="feedback-group">
 

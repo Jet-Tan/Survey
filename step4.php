@@ -2,7 +2,7 @@
 session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['feedback'] = $_POST['feedback'];
-    header("Location: thankyou.php");
+    header("Location: db_connect.php");
     exit();
 }
 ?>
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Bước 4: Nhận xét</title>
+    <title>Riokupon</title>
 </head>
 
 <body>
