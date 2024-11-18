@@ -54,20 +54,20 @@ $conn->close();
     <title>Riokupon</title>
 </head>
 <style>
-input {
-    border-radius: 8px;
-    padding: 10px
-}
+    input {
+        border-radius: 8px;
+        padding: 10px
+    }
 
-.feedback-group {
-    margin: 10px 20px;
-    background: transparent;
-}
+    .feedback-group {
+        margin: 10px 20px;
+        background: transparent;
+    }
 </style>
 
 <body>
     <div class="container">
-        <h2>Khảo sát về Riokupon</h2>
+        <h1>Khảo sát về Riokupon</h1>
         <form id="step-form" method="post">
             <div class="feedback-group">
 

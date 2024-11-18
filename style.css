@@ -26,6 +26,9 @@ body {
     text-align: center;
 }
 
+.container h1{
+    text-align: center;
+}
 /* Thông tin mô tả */
 .info {
     background: rgb(255 204 77);

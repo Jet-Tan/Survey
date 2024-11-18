@@ -17,10 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="style.css">
     <title>Riokupon</title>
     <script>
-        // Hàm tự động gửi form khi chọn radio button
-        function autoSubmit() {
-            document.getElementById('step1-form').submit(); // Gửi form khi chọn radio
-        }
+    // Hàm tự động gửi form khi chọn radio button
+    function autoSubmit() {
+        document.getElementById('step1-form').submit(); // Gửi form khi chọn radio
+    }
     </script>
 </head>
 
