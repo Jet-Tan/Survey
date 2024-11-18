@@ -17,17 +17,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="style.css">
     <title>Bước 2: Chọn ứng dụng</title>
     <script>
-        function autoSubmit() {
-            document.getElementById('step2-form').submit();
-        }
+    function autoSubmit() {
+        document.getElementById('step2-form').submit();
+    }
     </script>
 </head>
 
 <body>
     <div class="container">
-        <h2>Trải Nghiệm Mua Sắm Hoàn Tiền Tại Riokupon Của Bạn Thế Nào?</h2>
-        <div class="info">
-            <i class="fa-solid fa-cart-plus"></i> Bạn mua sắm qua App Riokupon hay Messenger Riokupon
+        <h2>Trải Nghiệm <span style="color:#000; font-size: 1.5rem;">Mua Sắm Hoàn Tiền Tại Riokupon</span> Của Bạn Thế
+            Nào?
+        </h2>
+        <div class="info" style="color:#fff; background: rgb(182 68 59)">
+            <i class="fa-solid fa-cart-shopping" style="color:#fff"></i> Bạn mua sắm qua App Riokupon hay Messenger
+            Riokupon
         </div>
         <div class="check">
             <img src="images/tick.png" alt="Tick Image" class="tick"> Ý kiến của bạn rất quan trọng với Riokupon
@@ -37,12 +40,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div>
                     <label>App
                         Riokupon</label>
-                    <input type="radio" name="app_choice" value="App Riokupon" onchange="autoSubmit()">
+                    <div>
+                        <input type="radio" name="app_choice" value="App Riokupon" onchange="autoSubmit()">
+                    </div>
                 </div>
                 <div>
                     <label> Messenger
-                        Riokupon</label><input type="radio" name="app_choice" value="Messenger Riokupon"
-                        onchange="autoSubmit()">
+                        Riokupon</label>
+                    <div>
+                        <input type="radio" name="app_choice" value="Messenger Riokupon" onchange="autoSubmit()">
+                    </div>
                 </div>
             </div>
 

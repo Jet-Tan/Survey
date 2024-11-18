@@ -17,16 +17,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="style.css">
     <title>Bước 1: Đánh giá</title>
     <script>
-        // Hàm tự động gửi form khi chọn radio button
-        function autoSubmit() {
-            document.getElementById('step1-form').submit(); // Gửi form khi chọn radio
-        }
+    // Hàm tự động gửi form khi chọn radio button
+    function autoSubmit() {
+        document.getElementById('step1-form').submit(); // Gửi form khi chọn radio
+    }
     </script>
 </head>
 
 <body>
     <div class="container">
-        <h2>Trải Nghiệm Mua Sắm Hoàn Tiền Tại Riokupon Của Bạn Thế Nào?</h2>
+        <h2>Trải Nghiệm <span style="color:#000; font-size: 1.5rem;">Mua Sắm Hoàn Tiền Tại Riokupon</span> Của Bạn Thế
+            Nào?
+        </h2>
         <div class="info">
             <i class="fa-regular fa-face-smile-beam"></i> Cho Rio biết cảm xúc của bạn khi mua sắm hoàn tiền qua
             Riokupon
@@ -37,22 +39,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label>
                         😍 Rất thích
                     </label>
-
-                    <input type="radio" name="satisfaction" value="Rất yêu thích" onchange="autoSubmit()">
+                    <div>
+                        <input type="radio" name="satisfaction" value="Rất yêu thích" onchange="autoSubmit()">
+                    </div>
 
                 </div>
 
                 <div>
                     <label>😊 Bình thường</label>
-
-                    <input type="radio" name="satisfaction" value="Bình thường" onchange="autoSubmit()">
+                    <div>
+                        <input type="radio" name="satisfaction" value="Bình thường" onchange="autoSubmit()">
+                    </div>
 
                 </div>
 
                 <div>
                     <label>😞 Không tốt</label>
-
-                    <input type="radio" name="satisfaction" value="Không tốt" onchange="autoSubmit()">
+                    <div>
+                        <input type="radio" name="satisfaction" value="Không tốt" onchange="autoSubmit()">
+                    </div>
 
                 </div>
             </div>

@@ -21,20 +21,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
 
-        <h2>Trải Nghiệm Mua Sắm Hoàn Tiền Tại Riokupon Của Bạn Thế Nào?</h2>
-        <div class="info">
+        <h2>Trải Nghiệm <span style="color:#000; font-size: 1.5rem;">Mua Sắm Hoàn Tiền Tại Riokupon</span> Của Bạn Thế
+            Nào?
+        </h2>
+        <div class="info" style="color:#fff; background: rgb(182 68 59)">
             <img src="images/mail.png" alt="Mail Image"> Bạn thấy khó khăn ở bước nào khi mua sắm qua Riokupon
         </div>
         <div class="check">
             <img src="images/tick.png" alt="Tick Image" class="tick"> Ý kiến của bạn rất quan trọng với Riokupon
         </div>
         <form method="post" action="step4.php">
-
             <textarea id="feedback" name="feedback" rows="4" cols="50" placeholder="Nhập ý kiến của bạn..."
                 required></textarea>
-
-
-
             <button type="submit">Submit</button>
         </form>
     </div>

@@ -17,17 +17,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="style.css">
     <title>Bước 3: Hành động tiếp theo</title>
     <script>
-        function autoSubmit() {
-            document.getElementById('step3-form').submit();
-        }
+    function autoSubmit() {
+        document.getElementById('step3-form').submit();
+    }
     </script>
 </head>
 
 <body>
     <div class="container">
-        <h2>Trải Nghiệm Mua Sắm Hoàn Tiền Tại Riokupon Của Bạn Thế Nào?</h2>
+        <h2>Trải Nghiệm <span style="color:#000; font-size: 1.5rem;">Mua Sắm Hoàn Tiền Tại Riokupon</span> Của Bạn Thế
+            Nào?
+        </h2>
         <div class="info">
-            <i class="fa-solid fa-store"></i> Bạn thấy khó khăn ở bước nào khi mua sắm qua Riokupon
+            <img src="images/store.png" alt="Store Image">Bạn thấy khó khăn ở bước nào khi mua sắm qua Riokupon
         </div>
         <div class="check">
             <img src="images/tick.png" alt="Tick Image" class="tick"> Ý kiến của bạn rất quan trọng với Riokupon
@@ -36,25 +38,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="feedback-group">
                 <div>
                     <label>Tải app Riokupon</label>
-                    <input type="radio" name="action" value="Tải app Riokupon" onchange="autoSubmit()">
+                    <div>
+                        <input type="radio" name="action" value="Tải app Riokupon" onchange="autoSubmit()">
+                    </div>
+
                 </div>
                 <div>
                     <label>
                         Đăng nhập tài khoản Riokupon</label>
-                    <input type="radio" name="action" value="Đăng nhập tài khoản Riokupon" onchange="autoSubmit()">
+                    <div>
+                        <input type="radio" name="action" value="Đăng nhập tài khoản Riokupon" onchange="autoSubmit()">
+                    </div>
                 </div>
                 <div>
                     <label> Copy link sản phẩm trên sàn</label>
-                    <input type="radio" name="action" value="Tải app Riokupon" onchange="autoSubmit()">
+                    <div>
+                        <input type="radio" name="action" value="Tải app Riokupon" onchange="autoSubmit()">
+                    </div>
                 </div>
                 <div>
                     <label>
                         Dán link sản phẩm ở messenger/app Riokupon</label>
-                    <input type="radio" name="action" value="Đăng nhập tài khoản Riokupon" onchange="autoSubmit()">
+                    <div>
+                        <input type="radio" name="action" value="Đăng nhập tài khoản Riokupon" onchange="autoSubmit()">
+                    </div>
                 </div>
                 <div>
                     <label> Không có gì khó khăn</label>
-                    <input type="radio" name="action" value="Tải app Riokupon" onchange="autoSubmit()">
+                    <div>
+                        <input type="radio" name="action" value="Tải app Riokupon" onchange="autoSubmit()">
+                    </div>
                 </div>
 
             </div>
