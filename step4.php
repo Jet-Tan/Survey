@@ -1,10 +1,26 @@
 <?php
-session_start();
+// session_start();
+// if (!isset($_SESSION['user_id'])) {
+//     header("Location: step1.php");
+//     exit();
+// }
+
+include_once "db_connect.php";
+
+$user_id = $_GET['user_id'] ?? '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $_SESSION['feedback'] = $_POST['feedback'];
-    header("Location: db_connect.php");
-    exit();
+    $feedback = $_POST['feedback'];
+
+    $sql = "UPDATE survey_responses SET feedback='$feedback' WHERE user_id='$user_id'";
+    if ($conn->query($sql) === TRUE) {
+        header("Location: thankyou.php");
+        exit();
+    } else {
+        echo "Error: " . $conn->error;
+    }
 }
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="check">
             <img src="images/tick.png" alt="Tick Image" class="tick"> Ý kiến của bạn rất quan trọng với Riokupon
         </div>
-        <form method="post" action="step4.php">
+        <form method="post">
             <textarea id="feedback" name="feedback" rows="4" cols="50" placeholder="Nhập ý kiến của bạn..."
                 required></textarea>
             <button type="submit">Submit</button>

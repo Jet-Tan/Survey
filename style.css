@@ -21,7 +21,7 @@ body {
 /* Tiêu đề */
 .container h2 {
     font-size: 1.5rem; /* 24px on large screens, smaller on mobile */
-    color: #1d4ed8;
+    color:hsl(260.09deg 84.13% 50.59%);
     margin-bottom: 1rem;
     text-align: center;
 }
@@ -61,18 +61,16 @@ body {
     margin-top: 10px;
 }
 
-/* Nhóm từng lựa chọn */
-.feedback-group div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem;
-}
+
 
 /* Nhóm label */
 .feedback-group label {
     font-size: 1.875rem; /* 30px */
     cursor: pointer;
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
 }
 
 /* Đảm bảo radio button không bị ẩn */

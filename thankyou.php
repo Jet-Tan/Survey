@@ -1,6 +1,7 @@
-
-
-
+<?php
+session_start();
+session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -10,20 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Riokupon</title>
-
-    <script type="text/javascript">
-        // Khi trang được load, kiểm tra lịch sử duyệt web
-        window.onload = function() {
-            // Chặn người dùng quay lại trang khảo sát
-            if (history.length > 1) {
-                history.pushState(null, null, location.href);
-                window.onpopstate = function() {
-                    // Khi người dùng nhấn nút quay lại, chuyển hướng tới index.php
-                    window.location.href = 'index.php';
-                };
-            }
-        };
-    </script>
 </head>
 
 <body>

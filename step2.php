@@ -1,9 +1,19 @@
 <?php
-session_start();
+include_once "db_connect.php";
+
+$user_id = $_GET['user_id'] ?? '';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $_SESSION['step2'] = $_POST['app_choice'];
-    header("Location: step3.php");
-    exit();
+    $step2 = $_POST['step2'];
+
+    $sql = "UPDATE survey_responses SET step2='$step2' WHERE user_id='$user_id'";
+
+    if ($conn->query($sql) === TRUE) {
+        header("Location: step3.php?user_id=$user_id");
+        exit();
+    } else {
+        echo "Lỗi: " . $conn->error;
+    }
 }
 ?>
 
@@ -17,9 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="style.css">
     <title>Riokupon</title>
     <script>
-        function autoSubmit() {
-            document.getElementById('step2-form').submit();
-        }
+    function autoSubmit() {
+        document.getElementById('step2-form').submit();
+    }
     </script>
 </head>
 
@@ -33,30 +43,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             Riokupon
         </div>
         <div class="check">
-            <img src="images/tick.png" alt="Tick Image" class="tick"> Ý kiến của bạn rất quan trọng với Riokupon
+            <img src="images/tick.png" alt="Tick Image" class="tick"> Tích vào 1 ô mà bạn chọn
         </div>
         <form id="step2-form" method="POST">
             <div class="feedback-group">
-                <div>
-                    <label>App
-                        Riokupon</label>
-                    <div>
-                        <input type="radio" name="app_choice" value="App Riokupon" onchange="autoSubmit()">
-                    </div>
-                </div>
-                <div>
-                    <label> Messenger
-                        Riokupon</label>
-                    <div>
-                        <input type="radio" name="app_choice" value="Messenger Riokupon" onchange="autoSubmit()">
-                    </div>
-                </div>
+                <label>App
+                    Riokupon <input type="radio" name="step2" value="App Riokupon" onchange="autoSubmit()">
+                </label>
+                <label> Messenger
+                    Riokupon <input type="radio" name="step2" value="Messenger Riokupon" onchange="autoSubmit()">
+                </label>
             </div>
-
-
-
         </form>
-
     </div>
 
 </body>

@@ -1,9 +1,30 @@
 <?php
-session_start();
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $_SESSION['step1'] = $_POST['satisfaction'];
-    header("Location: step2.php");
+include_once "db_connect.php";
+
+// Lấy `user_id` từ URL
+if (
+    !isset($_GET['user_id']) || empty($_GET['user_id'])
+) {
+    // Tạo giá trị user_id mẫu (có thể là từ session, database hoặc giá trị giả định)
+    $user_id = uniqid(); // Tạo ID ngẫu nhiên nếu cần
+    header("Location: step1.php?user_id=$user_id");
     exit();
+} else {
+    // Nếu user_id đã tồn tại, lấy giá trị từ URL
+    $user_id = $_GET['user_id'];
+}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $step1 = $_POST['step1'];
+
+    $sql = "INSERT INTO survey_responses (user_id, step1) VALUES ('$user_id', '$step1') 
+            ON DUPLICATE KEY UPDATE step1='$step1'";
+
+    if ($conn->query($sql) === TRUE) {
+        header("Location: step2.php?user_id=$user_id");
+        exit();
+    } else {
+        echo "Lỗi: " . $conn->error;
+    }
 }
 ?>
 
@@ -17,10 +38,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="style.css">
     <title>Riokupon</title>
     <script>
-    // Hàm tự động gửi form khi chọn radio button
-    function autoSubmit() {
-        document.getElementById('step1-form').submit(); // Gửi form khi chọn radio
-    }
+        // Hàm tự động gửi form khi chọn radio button
+        function autoSubmit() {
+            document.getElementById('step1-form').submit(); // Gửi form khi chọn radio
+        }
     </script>
 </head>
 
@@ -35,31 +56,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <form id="step1-form" method="POST">
             <div class="feedback-group">
-                <div>
-                    <label>
-                        😍 Rất thích
-                    </label>
-                    <div>
-                        <input type="radio" name="satisfaction" value="Rất yêu thích" onchange="autoSubmit()">
-                    </div>
-
-                </div>
-
-                <div>
-                    <label>😊 Bình thường</label>
-                    <div>
-                        <input type="radio" name="satisfaction" value="Bình thường" onchange="autoSubmit()">
-                    </div>
-
-                </div>
-
-                <div>
-                    <label>😞 Không tốt</label>
-                    <div>
-                        <input type="radio" name="satisfaction" value="Không tốt" onchange="autoSubmit()">
-                    </div>
-
-                </div>
+                <label>
+                    😍 Rất
+                    thích<input type="radio" name="step1" value="Rất yêu thích" onchange="autoSubmit()">
+                </label>
+                <label>😊 Bình thường <input type="radio" name="step1" value="Bình thường" onchange="autoSubmit()">
+                </label>
+                <label>😞 Không tốt <input type="radio" name="step1" value="Không tốt" onchange="autoSubmit()">
+                </label>
             </div>
         </form>
     </div>
