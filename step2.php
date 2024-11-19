@@ -1,21 +1,37 @@
 <?php
 include_once "db_connect.php";
 
+// Validate and sanitize user_id
 $user_id = $_GET['user_id'] ?? '';
+if (empty($user_id) || !preg_match('/^[a-zA-Z0-9]+$/', $user_id)) {
+    // Invalid user_id, redirect or handle the error
+    echo "Invalid user_id.";
+    exit();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $step2 = $_POST['step2'];
+    $step2 = htmlspecialchars(trim($_POST['step2']));
 
-    $sql = "UPDATE survey_responses SET step2='$step2' WHERE user_id='$user_id'";
 
-    if ($conn->query($sql) === TRUE) {
+    $stmt = $conn->prepare("UPDATE survey_responses SET step2=? WHERE user_id=?");
+    if ($stmt === false) {
+        error_log("Error preparing statement: " . $conn->error);
+        echo "Có lỗi xảy ra, vui lòng thử lại sau.";
+        exit();
+    }
+
+    $stmt->bind_param("ss", $step2, $user_id);
+
+    if ($stmt->execute()) {
         header("Location: step3.php?user_id=$user_id");
         exit();
     } else {
-        echo "Lỗi: " . $conn->error;
+        error_log("Database Error: " . $stmt->error);
+        echo "Có lỗi xảy ra, vui lòng thử lại sau.";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="vi">

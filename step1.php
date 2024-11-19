@@ -1,32 +1,57 @@
 <?php
 include_once "db_connect.php";
 
-// Lấy `user_id` từ URL
-if (
-    !isset($_GET['user_id']) || empty($_GET['user_id'])
-) {
-    // Tạo giá trị user_id mẫu (có thể là từ session, database hoặc giá trị giả định)
-    $user_id = uniqid(); // Tạo ID ngẫu nhiên nếu cần
-    header("Location: step1.php?user_id=$user_id");
+// Use session to store user ID
+session_start();
+
+// Get `user_id` from session or URL
+if (!isset($_GET['user_id']) || empty($_GET['user_id'])) {
+    if (!isset($_SESSION['user_id'])) {
+        $_SESSION['user_id'] = uniqid(); // Generate a random ID if needed
+    }
+    header("Location: step1.php?user_id=" . $_SESSION['user_id']);
     exit();
 } else {
-    // Nếu user_id đã tồn tại, lấy giá trị từ URL
-    $user_id = $_GET['user_id'];
+    // If user_id exists, set it in session
+    $_SESSION['user_id'] = $_GET['user_id'];
+    $user_id = $_SESSION['user_id'];
 }
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $step1 = $_POST['step1'];
+    $step1 = htmlspecialchars(trim($_POST['step1']));
 
-    $sql = "INSERT INTO survey_responses (user_id, step1) VALUES ('$user_id', '$step1') 
-            ON DUPLICATE KEY UPDATE step1='$step1'";
+    // Check if user_id already exists in the database
+    $stmt = $conn->prepare("SELECT 1 FROM survey_responses WHERE user_id = ?");
+    $stmt->bind_param("s", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if ($conn->query($sql) === TRUE) {
-        header("Location: step2.php?user_id=$user_id");
-        exit();
+    if ($result->num_rows > 0) {
+        // If user_id exists, update the record
+        $update_stmt = $conn->prepare("UPDATE survey_responses SET step1 = ? WHERE user_id = ?");
+        $update_stmt->bind_param("ss", $step1, $user_id);
+        if ($update_stmt->execute()) {
+            header("Location: step2.php?user_id=$user_id");
+            exit();
+        } else {
+            error_log("Database Error: " . $update_stmt->error);
+            echo "Có lỗi xảy ra, vui lòng thử lại sau.";
+        }
     } else {
-        echo "Lỗi: " . $conn->error;
+        // If user_id doesn't exist, insert a new record
+        $insert_stmt = $conn->prepare("INSERT INTO survey_responses (user_id, step1) VALUES (?, ?)");
+        $insert_stmt->bind_param("ss", $user_id, $step1);
+        if ($insert_stmt->execute()) {
+            header("Location: step2.php?user_id=$user_id");
+            exit();
+        } else {
+            error_log("Database Error: " . $insert_stmt->error);
+            echo "Có lỗi xảy ra, vui lòng thử lại sau.";
+        }
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="vi">

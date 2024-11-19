@@ -8,17 +8,29 @@
 include_once "db_connect.php";
 
 $user_id = $_GET['user_id'] ?? '';
+if (empty($user_id) || !preg_match('/^[a-zA-Z0-9]+$/', $user_id)) {
+    // Invalid user_id, redirect or handle the error
+    echo "Invalid user_id.";
+    exit();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $step3 = $_POST['step3'];
+    $step3 = htmlspecialchars(trim($_POST['step3']));
 
-    $sql = "UPDATE survey_responses SET step3='$step3' WHERE user_id='$user_id'";
+    $stmt = $conn->prepare("UPDATE survey_responses SET step3=? WHERE user_id=?");
+    if ($stmt === false) {
+        error_log("Error preparing statement: " . $conn->error);
+        echo "Có lỗi xảy ra, vui lòng thử lại sau.";
+        exit();
+    }
+    $stmt->bind_param("ss", $step3, $user_id);
 
-    if ($conn->query($sql) === TRUE) {
+    if ($stmt->execute()) {
         header("Location: step4.php?user_id=$user_id");
         exit();
     } else {
-        echo "Lỗi: " . $conn->error;
+        error_log("Database Error: " . $stmt->error);
+        echo "Có lỗi xảy ra, vui lòng thử lại sau.";
     }
 }
 ?>
@@ -33,9 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="style.css">
     <title>Riokupon</title>
     <script>
-    function autoSubmit() {
-        document.getElementById('step3-form').submit();
-    }
+        function autoSubmit() {
+            document.getElementById('step3-form').submit();
+        }
     </script>
 </head>
 

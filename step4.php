@@ -8,8 +8,13 @@
 include_once "db_connect.php";
 
 $user_id = $_GET['user_id'] ?? '';
+if (empty($user_id) || !preg_match('/^[a-zA-Z0-9]+$/', $user_id)) {
+    // Invalid user_id, redirect or handle the error
+    echo "Invalid user_id.";
+    exit();
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $feedback = $_POST['feedback'];
+    $feedback = htmlspecialchars(trim($_POST['feedback']));
 
     $sql = "UPDATE survey_responses SET feedback='$feedback' WHERE user_id='$user_id'";
     if ($conn->query($sql) === TRUE) {
